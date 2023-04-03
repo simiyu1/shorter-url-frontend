@@ -29,14 +29,16 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.authenticationService.login(this.loginForm.value).subscribe(
         (response) => {
-          if (response.success) {
+          if (response.token) {
+            localStorage.setItem('authToken', response.token);
             this.router.navigate(['/dashboard']);
           } else {
             alert('Invalid username or password');
           }
         },
         (error) => {
-          alert('An error occurred. Please try again later.');
+          console.log("----", JSON.stringify(error))
+          //alert('An error occurred. Please try again later.');
         }
       );
     }
