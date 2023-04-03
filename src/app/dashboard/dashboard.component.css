@@ -1,0 +1,20 @@
+.url-input {
+    margin-bottom: 20px;
+  }
+  
+  .shortened-urls table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .shortened-urls th,
+  .shortened-urls td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .shortened-urls th {
+    background-color: #f2f2f2;
+  }
+  

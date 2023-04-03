@@ -1,1 +1,26 @@
-<p>dashboard works!</p>
+<div class="url-input">
+    <form [formGroup]="urlForm" (ngSubmit)="onSubmit()">
+      <label for="longUrl">Long URL:</label>
+      <input id="longUrl" type="text" formControlName="longUrl" />
+      <button type="submit" [disabled]="!urlForm.valid">Shorten URL</button>
+    </form>
+  </div>
+  
+  <div class="shortened-urls">
+    <h2>Shortened URLs</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Long URL</th>
+          <th>Short URL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let url of shortenedUrls">
+          <td>{{ url.longUrl }}</td>
+          <td>{{ url.shortUrl }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
