@@ -10,6 +10,7 @@ import { UrlShorteningService } from '../services/url-shortening.service';
 export class DashboardComponent implements OnInit {
   urlForm!: FormGroup;
   shortenedUrls: any[] = [];
+  urlMappings: any[] = [];
 
   constructor(private formBuilder: FormBuilder, private urlShorteningService: UrlShorteningService) { }
 
@@ -18,6 +19,14 @@ export class DashboardComponent implements OnInit {
       longUrl: ['', Validators.required]
     });
     this.fetchShortenedUrls();
+    this.urlShorteningService.getAllUrls().subscribe(
+      (urlMappings: any[]) => {
+        this.urlMappings = urlMappings;
+      },
+      (error) => {
+        console.error('Error fetching all URLs:', error);
+      }
+    );
   }
 
   onSubmit(): void {
