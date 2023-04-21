@@ -10,19 +10,19 @@ import { UrlMapping } from '../models/url-mapping.model';
 })
 export class UrlShorteningService {
 
-  private apiUrl = 'http://localhost:8081/api';
+  private apiUrl = "http://api.ntoya.link/api"; //'http://localhost:8081/api';
 
   constructor(private http: HttpClient) { }
 
-  shortenUrl(data: { longUrl: string,  customAlias?: string }, headers: HttpHeaders): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/shorten`, data, { headers });
+  shortenUrl(data: { longUrl: string, customAlias?: string }): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/shorten`, data);
   }
-
-  getShortenedUrls(headers: HttpHeaders): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/shortened-urls`, { headers });
+  
+  getShortenedUrls(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/shortened-urls`);
   }
-
-  getAllUrls(headers: HttpHeaders): Observable<UrlMapping[]> {
-    return this.http.get<UrlMapping[]>(`${this.apiUrl}/urls`, { headers });
+  
+  getAllUrls(): Observable<UrlMapping[]> {
+    return this.http.get<UrlMapping[]>(`${this.apiUrl}/urls`);
   }
 }

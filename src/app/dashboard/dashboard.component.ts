@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UrlShorteningService } from '../services/url-shortening.service';
-import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +17,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.urlForm = this.formBuilder.group({
       longUrl: ['', [Validators.required, DashboardComponent.validUrl]],
-      customAlias: [''] 
+      customAlias: ['']
     });
     this.fetchShortenedUrls();
     this.fetchUrlMappings();
@@ -26,7 +25,7 @@ export class DashboardComponent implements OnInit {
 
   onSubmit(): void {
     if (this.urlForm.valid) {
-      this.urlShorteningService.shortenUrl(this.urlForm.value, this.getAuthHeaders()).subscribe(
+      this.urlShorteningService.shortenUrl(this.urlForm.value).subscribe(
         (shortUrl) => {
           this.shortenedUrls.push(shortUrl);
           this.urlMappings.push(shortUrl);
@@ -41,7 +40,7 @@ export class DashboardComponent implements OnInit {
   }
 
   fetchShortenedUrls(): void {
-    this.urlShorteningService.getShortenedUrls(this.getAuthHeaders()).subscribe(
+    this.urlShorteningService.getShortenedUrls().subscribe(
       (urls) => {
         this.shortenedUrls = urls;
       },
@@ -53,7 +52,7 @@ export class DashboardComponent implements OnInit {
   }
 
   fetchUrlMappings(): void {
-    this.urlShorteningService.getAllUrls(this.getAuthHeaders()).subscribe(
+    this.urlShorteningService.getAllUrls().subscribe(
       (urlMappings: any[]) => {
         this.urlMappings = urlMappings;
       },
@@ -62,15 +61,9 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
-  getAuthHeaders(): HttpHeaders {
-    const token = localStorage.getItem('authToken');
-    return new HttpHeaders().set('Authorization', 'Bearer ' + token);
-  }
 
   static validUrl(control: AbstractControl): { [key: string]: any } | null {
     const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
     return urlPattern.test(control.value) ? null : { invalidUrl: { value: control.value } };
   }
-  
 }
-

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly apiUrl = 'http://localhost:8080/api'; // Confirm backend API URL
+  private readonly apiUrl = 'http://api.ntoya.link/api'; // Confirm backend API URL
 
   constructor(private http: HttpClient) { }
 
