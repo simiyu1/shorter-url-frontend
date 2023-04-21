@@ -32,6 +32,10 @@
                 <tr *ngFor="let urlMapping of urlMappings">
                   <td>{{ urlMapping.longUrl }}</td>
                   <td><a [href]="urlMapping.shortUrl" target="_blank">{{ urlMapping.shortUrl }}</a></td>
+                  <!-- <td>
+                    <a [href]="'http://api.ntoya.link/api/' + urlMapping.shortUrl" target="_blank">{{ urlMapping.shortUrl }}</a>
+                  </td> -->
+                  
                 </tr>
               </tbody>
             </table>
