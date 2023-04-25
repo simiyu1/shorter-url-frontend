@@ -6,11 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private apiUrl = 'http://localhost:8080/api'; // Confirm backend 
+  private apiUrl = "http://api.ntoya.link/api"; //'http://localhost:8080/api'; // Confirm backend 
 
   constructor(private httpClient: HttpClient) { }
 
   login(credentials: { username: string, password: string }): Observable<any> {
-    return this.httpClient.post<any>(`${this.apiUrl}/login`, credentials);
+    return this.httpClient.post<any>(`${this.apiUrl}/auth/login`, credentials);
   }
+  
 }

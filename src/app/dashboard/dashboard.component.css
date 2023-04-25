@@ -1,20 +1,171 @@
-.url-input {
-    margin-bottom: 20px;
+:root {
+  --very-dark: #393646;
+  --moderately-dark: #4F4557;
+  --slightly-dark: #6D5D6E;
+  --bright: #F4EEE0;
+}
+
+body {
+  background-color: var(--bright);
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Container */
+.entry-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.url-input label,
+.url-input input {
+  display: block;
+  margin-bottom: 10px;
+}
+
+
+.app-title {
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: var(--very-dark);
+}
+
+/* Entry Container */
+.entry-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.url-input input {
+  flex-grow: 1;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--moderately-dark);
+  border-radius: 5px;
+  background-color: var(--bright);
+  color: var(--very-dark);
+  outline: none;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+/* .entry-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.url-input label,
+.url-input input {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.url-input input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--moderately-dark);
+  border-radius: 5px;
+  background-color: var(--bright);
+  color: var(--very-dark);
+} */
+
+.error-message {
+  color: #f44336;
+  margin-bottom: 10px;
+}
+
+/* Scrollable Table */
+.scrollable-table {
+  max-height: 50vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.shortened-urls table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.shortened-urls th,
+.shortened-urls td {
+  padding: 10px;
+  border: 1px solid var(--moderately-dark);
+}
+
+.shortened-urls th {
+  background-color: var(--slightly-dark);
+  color: var(--bright);
+}
+
+.shortened-urls tbody tr:hover {
+  background-color: var(--slightly-dark);
+}
+
+/* Material UI feel */
+/* .url-input input,
+.url-input button,
+.shortened-urls input,
+.shortened-urls button {
+  border-radius: 5px;
+} */
+
+.url-input button,
+.shortened-urls button {
+  background-color: var(--slightly-dark);
+  color: var(--very-dark);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  border-radius: 5px;
+  font-weight: 600;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.url-input button:hover,
+.shortened-urls button:hover {
+  background-color: var(--moderately-dark);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
+.url-input input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--moderately-dark);
+  border-radius: 5px;
+  background-color: var(--bright);
+  color: var(--very-dark);
+  outline: none;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.url-input input:focus {
+  border-color: var(--very-dark);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* Media query for responsive design */
+@media (max-width: 768px) {
+  .app-title {
+    font-size: 24px;
   }
-  
-  .shortened-urls table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .shortened-urls th,
-  .shortened-urls td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .shortened-urls th {
-    background-color: #f2f2f2;
-  }
-  
+}

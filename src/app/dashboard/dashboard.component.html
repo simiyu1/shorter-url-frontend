@@ -1,26 +1,47 @@
-<div class="url-input">
-    <form [formGroup]="urlForm" (ngSubmit)="onSubmit()">
-      <label for="longUrl">Long URL:</label>
-      <input id="longUrl" type="text" formControlName="longUrl" />
-      <button type="submit" [disabled]="!urlForm.valid">Shorten URL</button>
-    </form>
+<div class="container">
+  <h1 class="app-title text-center">Ntoya Url Shortener</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="entry-container">
+        <div class="url-input">
+          <form [formGroup]="urlForm" (ngSubmit)="onSubmit()" class="form-container">
+            <label for="longUrl">Long URL:</label>
+            <input id="longUrl" type="text" formControlName="longUrl" />
+            <div *ngIf="urlForm.controls['longUrl'].errors?.['invalidUrl']" class="error-message">
+              Please enter a valid URL.
+            </div>
+      
+            <label for="customAlias">Custom Alias (optional):</label>
+            <input id="customAlias" type="text" formControlName="customAlias" />
+      
+            <button type="submit" [disabled]="!urlForm.valid">Shorten URL</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <div class="shortened-urls">
+          <h2>Shortened URLs</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Long URL</th>
+                <th>Short URL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let urlMapping of urlMappings">
+                <td>{{ 'http://api.ntoya.link/api/' + urlMapping.longUrl }}</td>
+                <td>
+                  <a [href]="'http://api.ntoya.link/api/' + urlMapping.shortUrl" target="_blank">
+                    {{ 'http://api.ntoya.link/api/' + urlMapping.shortUrl }}
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
-  
-  <div class="shortened-urls">
-    <h2>Shortened URLs</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Long URL</th>
-          <th>Short URL</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let url of shortenedUrls">
-          <td>{{ url.longUrl }}</td>
-          <td>{{ url.shortUrl }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
+</div>

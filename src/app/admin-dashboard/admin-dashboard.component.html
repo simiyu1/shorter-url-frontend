@@ -1,0 +1,29 @@
+<div class="container mt-4">
+    <div class="row">
+      <div class="col">
+        <h2>Admin Dashboard</h2>
+      </div>
+      <div class="col text-right">
+        <button class="btn btn-danger" (click)="logout()">Logout</button>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-6">
+        <h4>Last 5 URLs</h4>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let url of lastFiveUrls">{{ url }}</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h4>Summary</h4>
+        <div class="card">
+          <div class="card-body">
+            <p class="card-text">Total URLs fetched: {{ totalUrls }}</p>
+            <p class="card-text">Unique clicks: {{ uniqueClicks }}</p>
+            <p class="card-text">Number of users: {{ numberOfUsers }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

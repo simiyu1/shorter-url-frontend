@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UrlShorteningService } from '../services/url-shortening.service';
 
 @Component({
@@ -10,14 +10,17 @@ import { UrlShorteningService } from '../services/url-shortening.service';
 export class DashboardComponent implements OnInit {
   urlForm!: FormGroup;
   shortenedUrls: any[] = [];
+  urlMappings: any[] = [];
 
   constructor(private formBuilder: FormBuilder, private urlShorteningService: UrlShorteningService) { }
 
   ngOnInit(): void {
     this.urlForm = this.formBuilder.group({
-      longUrl: ['', Validators.required]
+      longUrl: ['', [Validators.required, DashboardComponent.validUrl]],
+      customAlias: ['']
     });
     this.fetchShortenedUrls();
+    this.fetchUrlMappings();
   }
 
   onSubmit(): void {
@@ -25,6 +28,7 @@ export class DashboardComponent implements OnInit {
       this.urlShorteningService.shortenUrl(this.urlForm.value).subscribe(
         (shortUrl) => {
           this.shortenedUrls.push(shortUrl);
+          this.urlMappings.push(shortUrl);
           this.urlForm.reset();
         },
         error => {
@@ -46,5 +50,20 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
-}
 
+  fetchUrlMappings(): void {
+    this.urlShorteningService.getAllUrls().subscribe(
+      (urlMappings: any[]) => {
+        this.urlMappings = urlMappings;
+      },
+      (error) => {
+        console.error('Error fetching all URLs:', error);
+      }
+    );
+  }
+
+  static validUrl(control: AbstractControl): { [key: string]: any } | null {
+    const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
+    return urlPattern.test(control.value) ? null : { invalidUrl: { value: control.value } };
+  }
+}
