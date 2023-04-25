@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-  private readonly apiUrl = 'http://localhost:8080/api';
+  private readonly apiUrl = "http://api.ntoya.link/api";
 
   constructor(private http: HttpClient) { }
 
