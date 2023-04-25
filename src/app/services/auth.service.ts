@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly apiUrl = 'http://localhost:8080/api';
+  private readonly apiUrl = "http://api.ntoya.link/api";
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
 
