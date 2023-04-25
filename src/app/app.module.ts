@@ -10,13 +10,17 @@ import { RegistrationComponent } from './registration/registration.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './auth.interceptor';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 console.log('Loadeddd:');
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegistrationComponent,
-    DashboardComponent
+    DashboardComponent,
+    AdminDashboardComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
