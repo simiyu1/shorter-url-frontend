@@ -43,4 +43,5 @@ export class AuthService {
     const user = this.currentUserValue;
     return user && user.role && user.role.some((role: { name: string }) => role.name === 'ROLE_ADMIN');
   }
+  
 }

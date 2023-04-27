@@ -12,6 +12,7 @@ import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './auth.interceptor';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { NgChartsModule } from 'ng2-charts';
 console.log('Loadeddd:');
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ console.log('Loadeddd:');
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgChartsModule
   ],
   providers: [
     {

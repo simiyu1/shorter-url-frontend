@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { UrlMapping } from '../models/url-mapping.model';
+import { ipify } from 'ipify';
+import { switchMap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -15,7 +17,15 @@ export class UrlShorteningService {
   constructor(private http: HttpClient) { }
 
   shortenUrl(data: { longUrl: string, customAlias?: string }): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/shorten`, data);
+    return from(ipify({ protocol: 'https' })).pipe(
+      switchMap(ipAddress => {
+        const requestData = {
+          ...data,
+          ipAddress
+        };
+        return this.http.post<any>(`${this.apiUrl}/shorten`, requestData);
+      })
+    );
   }
   
   getShortenedUrls(): Observable<any[]> {
